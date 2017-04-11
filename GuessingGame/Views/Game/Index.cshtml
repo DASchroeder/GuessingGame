@@ -6,14 +6,19 @@
 
 <h2>@ViewBag.Title</h2>
 
-@if (!(ViewBag.Win ?? false))
+@if (!(ViewBag.Win ?? false)) //if we havent won
+    
+                                //TODO why do we use this to initialize the following code ? 
+                                //TODO if ViewBag does not equal null do this,
+                              //TODO this is used because when the visitor first shows up, he has not played and therefore we need 
+                              // to initialize the form to enable the user to play
 {
     if(ViewBag.Win != null)
     {
         <h2>Sorry, @Model.PlayerName, @Model.Guess is incorrect</h2>
     }
 
-    using (Html.BeginForm())
+    using (Html.BeginForm()) 
     {
         @Html.AntiForgeryToken()
     <div class="form-horizontal">
@@ -39,7 +44,11 @@
         </div>
     </div>
     </div>
-}
+        //TODO does null represent a placeholder, does it reserve space in memory?
+        //TODO why do we use Coalescing operator? 
+        //TODO The ?? operator defines a default value that is returned when a nullable type is assigned to a non-nullable type
+        //
+    }
 
 }
 else
@@ -50,3 +59,5 @@ else
 <div>
     @Html.ActionLink("Start Over", "Index")    @*Lets the customer start again, 1= text, 2=where it goes*@
 </div>
+
+
